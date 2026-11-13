@@ -1,0 +1,119 @@
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+import os
+import time
+import re
+from openpyxl import load_workbook
+
+
+def fetch_month_data_bs4(year, month, city, headers):
+    """使用 BeautifulSoup 采集单月天气数据，返回 [日期, 天气, 气温, 风力] 列表"""
+    url = f"https://www.tianqihoubao.com/lishi/{city}/month/{year}{month:02d}.html"
+    print(f"正在采集 {year}年{month:02d}月: {url}")
+
+    try:
+        resp = requests.get(url, headers=headers, timeout=10)
+        resp.encoding = 'utf-8'
+        soup = BeautifulSoup(resp.text, 'html.parser')
+        table = soup.find('table')
+        if not table:
+            print(f"  警告：未找到表格")
+            return []
+
+        rows = table.find_all('tr')
+        month_data = []
+        # 正则匹配日期：2025-01-01 或 2025年1月1日
+        date_pattern = re.compile(r'(\d{4}-\d{1,2}-\d{1,2})|(\d{4}年\d{1,2}月\d{1,2}日)')
+
+        for row in rows:
+            row_text = row.get_text(separator=' ', strip=True)
+            if not row_text:
+                continue
+            date_match = date_pattern.search(row_text)
+            if not date_match:
+                continue
+            date = date_match.group(0)
+
+            # 获取单元格内容（天气、气温、风力）
+            cells = row.find_all(['th', 'td'])
+            if len(cells) >= 4:
+                weather = cells[1].get_text(strip=True)
+                temp = cells[2].get_text(strip=True)
+                wind = cells[3].get_text(strip=True)
+            else:
+                # 备选：从纯文本分割（通常不会执行到这里）
+                parts = row_text.split()
+                if len(parts) >= 4:
+                    weather = parts[1]
+                    temp = parts[2]
+                    wind = parts[3]
+                else:
+                    continue
+
+            # 将中文日期转换为 YYYY-MM-DD
+            if '年' in date:
+                date = date.replace('年', '-').replace('月', '-').replace('日', '')
+            month_data.append([date, weather, temp, wind])
+
+        print(f"  采集到 {len(month_data)} 条记录")
+        return month_data
+    except Exception as e:
+        print(f"  采集失败：{e}")
+        return []
+
+
+def auto_adjust_column_width(file_path):
+    """自动调整 Excel 列宽，避免显示 ######"""
+    wb = load_workbook(file_path)
+    ws = wb.active
+    for col in ws.columns:
+        max_length = 0
+        col_letter = col[0].column_letter
+        for cell in col:
+            try:
+                if cell.value:
+                    max_length = max(max_length, len(str(cell.value)))
+            except:
+                pass
+        adjusted_width = min(max_length + 2, 30)  # 最大宽度30，避免过宽
+        ws.column_dimensions[col_letter].width = adjusted_width
+    wb.save(file_path)
+
+
+def main():
+    city = "changsha"
+    year = 2025
+    output_dir = r"project\学习\\爬虫\项目一"
+    os.makedirs(output_dir, exist_ok=True)
+    output_file = os.path.join(output_dir, "长沙2025年天气数据.xlsx")
+
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    }
+
+    all_data = []
+    for month in range(1, 13):
+        month_data = fetch_month_data_bs4(year, month, city, headers)
+        if month_data:
+            all_data.extend(month_data)
+        time.sleep(1)  # 礼貌性延迟
+
+    if not all_data:
+        print("未采集到任何数据，请检查网络或网站结构。")
+        return
+
+    df = pd.DataFrame(all_data, columns=["日期", "天气状况", "气温", "风力"])
+    df["日期"] = pd.to_datetime(df["日期"], format="%Y-%m-%d", errors="coerce")
+    df.to_excel(output_file, index=False, engine="openpyxl")
+
+    # 自动调整列宽，解决 Excel 中显示 ###### 的问题
+    auto_adjust_column_width(output_file)
+
+    print(f"数据已保存至 {output_file}，共 {len(df)} 条记录。")
+    print("\n前10条数据预览（与 Excel 中完全一致）：")
+    print(df.head(10))
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+           <title>大盘分析_股票_同花顺财经</title>
+    	<meta name="author" content="同花顺">
+    <meta name="baidu-site-verification" content="codeva-yOZO1Ja09o" />
+	<meta name="window-size" content="width=1250&height=650" />
+	<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+	<meta http-equiv="expires" content="0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+		<meta name="keywords" content="大盘分析,证券,股票,财经,基金,level-2,行情,数据,投资理财,港股,期货,股指期货,手机炒股,股票软件,分析软件,免费软件,证券软件,行情软件,委托下单,level2,股市,股票行情,股票查询,股票知识,股票论坛,股票入门,炒股软件,股市行情,股票分析,行情分析">
+	<meta name="description" content="大盘分析相关资讯内容">
+		<script>document.domain="10jqka.com.cn";
+	</script>
+    <link rel="stylesheet" type="text/css" href="http://s.thsi.cn/js/home/v5/thirdpart/icheck/skins/square/grey.css">
+    <link rel="stylesheet" type="text/css" href="http://s.thsi.cn/js/home/v5/thirdpart/scrollbar/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="http://s.thsi.cn/css/weblist/main.1.3.css?2016108">
+	<script src="http://s.thsi.cn/cb?js/;jquery-1.8.3.min.js;ta.min.js;storage.min.js;jquery.cookie.min.js;md5.js;thsLogin.min.js;js/home/;ths_core.min.js;ths_quote.js" type="text/javascript"></script>
+    <script src="http://s.thsi.cn/cb?/js/listpage/;WdatePicker.js;patch.min.js&2013030722" type="text/javascript"></script>
+    <script type="text/javascript" src="//s.thsi.cn/cb?js/m/common/zepto.js;sns/js/mobile/vuejs/vue-2.6.10-min.js"></script>
+    <script type="text/javascript" src="//s.thsi.cn/cd/mobileweb-eq-ths-mobile-components-front-container/mobileweb_AdvertCommon@1.0.4.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://s.thsi.cn/cb?css/home/v3/1.3/autoFix.css" />
+    <script src="https://s.thsi.cn/cd/weblog/0.0.2/weblog.js"></script>
+    <script>
+        window.weblog &&
+            window.weblog.setConfig({
+            appKey: '2f33f4f729'
+            });
+        var weblogReport = (id, action, logmap = {}) => {
+            var statParams = {
+            id,
+            action,
+            logmap
+            };
+            window.weblog && window.weblog.report(statParams);
+        };
+    </script>
+    <script>
+        // 页面曝光埋点
+        weblogReport('thsweb_msg_news_lanmuye_lanmu', 'show', {tabName: '大盘分析'});
+    </script>
+</head>
+<body>
+<div class="brandInfo">
+    <a href="http://windows.microsoft.com/zh-cn/internet-explorer/download-ie" target="_blank">您的IE版本过低，为了您更好的体验，请升至较高版本</a>
+    <a href="###" class="closebrand">关闭</a>
+</div>
+<input type="hidden" id='taginfoenname' value="hsdp"/>
+<div class="headTop">
+    <div class="content_wrap  content_l">
+        <div class="fl links">
+            <a ta_fid="index" target="_blank" href="http://www.10jqka.com.cn/">同花顺财经</a>
+            <a ta_fid="stock" target="_blank" href="http://stock.10jqka.com.cn/">股票</a>
+            <a ta_fid="news" target="_blank" href="http://news.10jqka.com.cn/">财经</a>
+            <a ta_fid="master" target="_blank" href="//t.10jqka.com.cn/newcircle/creation/adviserEnterGuide/">同顺号</a>
+            <a ta_fid="yuanchuang" target="_blank" href="http://yuanchuang.10jqka.com.cn/">原创</a>
+            <a ta_fid="gegu" target="_blank" href="http://stockpage.10jqka.com.cn/">个股</a>
+            <a ta_fid="q" target="_blank" href="http://q.10jqka.com.cn/">行情</a>
+            <a ta_fid="data" target="_blank" href="http://data.10jqka.com.cn/">数据</a>
+            <a ta_fid="qihuo" target="_blank" href="http://goodsfu.10jqka.com.cn/">期货</a>
+            <a ta_fid="fund" target="_blank" href="http://fund.10jqka.com.cn/">基金</a>
+        </div>
+        <div class="fr login_part ">
+            <div class="unlogin_p hide unloginbox"><a ta_fid="denglu" target="_blank" class="login callloginplugin"
+                    href="http://upass.10jqka.com.cn/login?redir=HTTP_REFERER">登录</a> <a ta_fid="zhuce" target="_blank"
+                    class="register" href="http://upass.10jqka.com.cn/register">注册</a></div>
+            <div class="login_p loginedbox">
+                <a id="J_username"></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="display:none;" class="guideDown">
+    <div class="content_wrap content_l">
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <ul>
+                            <li class="title"><a target="_blank" href="http://stock.10jqka.com.cn/">股票</a></li>
+                            <li><a target="_blank" href="http://stock.10jqka.com.cn/bidu/">每日必读</a></li>
+                            <li><a target="_blank" href="http://stock.10jqka.com.cn/newstock/">新股频道</a></li>
+                            <li><a target="_blank" href="http://stockpage.10jqka.com.cn/">个股</a></li>
+                            <li><a target="_blank" href="http://stock.10jqka.com.cn/thsgd/">滚动新闻</a></li>
+                            <li><a target="_blank" href="http://yuanchuang.10jqka.com.cn/">同花顺原创</a></li>
+                            <li><a targ
